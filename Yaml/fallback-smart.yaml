@@ -99,7 +99,7 @@ dns:
 external-controller: 0.0.0.0:9090
 external-ui: ui
 external-ui-name: zashboard
-external-ui-url: https://gh-proxy.com/GitHub.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip
+external-ui-url: https://fastly.jsdelivr.net/gh/Zephyruso/zashboard@gh-pages/zashboard.zip
 secret: "654321"
 profile: { store-selected: true, store-fake-ip: true }
 
@@ -111,10 +111,10 @@ geodata-mode: true # Geo数据文件模式：false 为 GeoIP (mmdb格式)，true
 geodata-loader: standard # GEO数据加载方式：standard (标准模式，速度快) 或 memconservative (内存节省模式)。
 
 geox-url: #  GEO 数据下载地址
-  geoip: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
-  geosite: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
-  mmdb: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
-  asn: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb"
+  geoip: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+  asn: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb"
 
 geo-auto-update: true
 geo-update-interval: 24 # GEO 数据更新间隔，单位为小时
@@ -209,10 +209,10 @@ rule-anchor:
 
 rule-providers:
   # 自定义或非 GEOSITE/GEOIP 类型数据
-  Custom-Direct: {<<: *class, url: "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/main/rule/Custom_Direct.list"}
-  Steam-CDN: {<<: *class, url: "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/main/rule/Steam_CDN.list"}
-  test: {<<: *class, url: "https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Check.list"}
-  anti-AD: {<<: *mrs, url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-ad.github.io/master/docs/mihomo.mrs"}
+  Custom-Direct: {<<: *class, url: "https://fastly.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Custom_Direct.list"}
+  Steam-CDN: {<<: *class, url: "https://fastly.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Steam_CDN.list"}
+  test: {<<: *class, url: "https://fastly.jsdelivr.net/gh/liandu2024/clash@main/list/Check.list"}
+  anti-AD: {<<: *mrs, url: "https://fastly.jsdelivr.net/gh/privacy-protection-tools/anti-ad.github.io@master/docs/mihomo.mrs"}
 
 # ========================
 # 流量规则 (Rules) - 定义流量分发逻辑
