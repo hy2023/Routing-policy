@@ -1,1 +1,27 @@
-
+# Emby直连服
+  - DOMAIN-SUFFIX,us.kg,Emby # nay  
+  - DOMAIN-SUFFIX,lunarisvault.com,Emby # Lunaris
+  - DOMAIN-SUFFIX,cnmbyd.xyz,Emby # 桜落庭
+  - DOMAIN-SUFFIX,emby.host,Emby # host
+  - DOMAIN-SUFFIX,okemby.org,Emby # Ok
+  - DOMAIN-SUFFIX,wedg.top,Emby # We
+  - DOMAIN-SUFFIX,43998362.xyz,Emby # 月子轩
+  - DOMAIN-SUFFIX,4348663.xyz,Emby # 月子轩
+  - DOMAIN-SUFFIX,emos.best,Emby # emos
+  - DOMAIN-SUFFIX,605305.xyz,Emby # 佬友记
+  - DOMAIN-SUFFIX,033388.xyz,Emby # 佬友记
+  - DOMAIN-SUFFIX,707909.xyz,Emby # dada
+  - DOMAIN-SUFFIX,ccwu.cc,Emby # dada
+  - DOMAIN-SUFFIX,101514.xyz,Emby # dada
+  - DOMAIN-SUFFIX,3msky.com,Emby # Msky
+  - DOMAIN-SUFFIX,emby.pro,Emby # 非越
+  - DOMAIN-SUFFIX,bangumi.ca,Emby # nya
+  - DOMAIN-SUFFIX,xmsl.org,Emby # 1111
+  - DOMAIN-SUFFIX,as174.de,Emby # hxd
+  - DOMAIN-SUFFIX,meowfly.de,Emby # 飞喵
+  - DOMAIN-SUFFIX,miraiemby.com,Emby # Mirai 
+# 反代域名
+  - DOMAIN-SUFFIX,indevs.in,Emby # aoao
+  - DOMAIN-SUFFIX,dpdns.org,Emby # luo
+  - DOMAIN-SUFFIX,de5.net,Emby # Dirige
+  - DOMAIN-SUFFIX,6yhy.top,Emby # A大 
