@@ -140,12 +140,12 @@ proxy-groups:
   - {name: Google,    <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png"} # Google服务专用组
   - {name: YouTube,   <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png"} # YouTube专用组
   - {name: Streaming, <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Streaming!CN.png"} # 流媒体服务专用组(如Netflix, Disney+, TikTok 等)
-  - {name: Telegram,  <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png"} # 即时通讯 (如 Telegram, WhatsApp, Line 等)
-  - {name: Instagram, <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Instagram.png"} # 社交媒体 (如 Twitter, Facebook, Instagram 等)
+  - {name: Chat,      <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png"} # 即时通讯 (如 Telegram, WhatsApp, Line 等)
+  - {name: Social,    <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Instagram.png"} # 社交媒体 (如 Twitter, Facebook, Instagram 等)
   - {name: Test,      <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Speedtest.png"} # 用于测速工具等
   - {name: Emby,      <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Emby.png"} # Emby服务直连专用组
   - {name: Game,      <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png"} # 游戏服务专用组
-  - {name: Big Tech,  <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png"} # 针对美国企业服务的组 (如Apple, Microsoft, Nvidia 等)
+  - {name: Corp,      <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png"} # 针对企业服务专用组 (如Apple, Microsoft, Nvidia 等)
   - {name: CN,        <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Domestic.png"} # 国内流量专用组 (最终直连的流量)
 
 # 所有节点选择组
@@ -217,27 +217,27 @@ rules:
 
   # 特定业务代理分流规则
   - RULE-SET,anti-AD,REJECT # 广告规则
-  - GEOSITE,category-ai-!cn,AI # 非中国区 AI 服务（如 ChatGPT, Gemini）
-  - GEOSITE,github,Proxy
-  - GEOSITE,category-communication,Telegram # 即时通讯服务域名（Telegram、WhatsApp 等）
-  - GEOSITE,category-social-media-!cn,Instagram # 非中国区社交媒体（如 Twitter、Facebook 等）
+  - GEOSITE,category-ai-!cn,AI # 非中国区 AI 服务（如 ChatGPT、Gemini）
+  - GEOSITE,github,AI
+  - GEOSITE,category-communication,Chat # 即时通讯服务域名（Telegram、WhatsApp 等）
+  - GEOSITE,category-social-media-!cn,Social # 非中国区社交媒体（如 Twitter、Facebook 等）
   - GEOSITE,steam,Game
   - GEOSITE,category-games,Game # 其他游戏平台（如 Epic、Origin、Uplay 等）
   - GEOSITE,youtube,YouTube
   - GEOSITE,category-entertainment,Streaming # 非中国区流媒体（如 Netflix、Disney+ 等）
   - GEOSITE,google,Google
-  - GEOSITE,apple,Big Tech
-  - GEOSITE,microsoft,Big Tech
-  - GEOSITE,nvidia,Big Tech
+  - GEOSITE,apple,Corp
+  - GEOSITE,microsoft,Corp
+  - GEOSITE,nvidia,Corp
   - RULE-SET,test,Test
   - GEOSITE,gfw,Proxy
   - GEOSITE,cn,CN
 
   # GEOIP 类规则
   - GEOIP,private,CN,no-resolve
-  - GEOIP,telegram,Telegram,no-resolve
-  - GEOIP,twitter,Instagram,no-resolve
-  - GEOIP,facebook,Instagram,no-resolve
+  - GEOIP,telegram,Chat,no-resolve
+  - GEOIP,twitter,Social,no-resolve
+  - GEOIP,facebook,Social,no-resolve
   - GEOIP,netflix,Streaming,no-resolve
   - GEOIP,google,Google,no-resolve
   - GEOIP,cn,CN,no-resolve
