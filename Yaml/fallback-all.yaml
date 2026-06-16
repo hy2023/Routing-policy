@@ -1,5 +1,6 @@
 # ===============================
 # Mihome-fallback-all方案 - 最终版
+# 代理提供商填入订阅信息,DNS按需修改便可直接使用
 # ===============================
 
 # ========================
@@ -54,7 +55,7 @@ tun:
   strict-route: false
   endpoint-independent-nat: true
   dns-hijack: [any:53, tcp://any:53] 
-# —— 以下三项在默认插件控制模式设为 false，如在仅核心模式必需设为 true ——
+# ———  以下三项在插件默认控制模式设为 false，如在仅核心模式必需设为 true  ———
   auto-route: false             # 路由接管：自动修改系统路由表引流。
   auto-redirect: false          # 流量劫持：拦截并重定向网络数据包。
   auto-detect-interface: false  # 出口识别：自动绑定上网网卡，防环路。
@@ -66,6 +67,7 @@ tun:
 
 # ========================
 # DNS 配置 - 域名解析设置
+# 建议优先使用运营商下放DNS替换下方nameserver加密DNS,并删除default-nameserver部分
 # ========================
 dns:
   enable: true
@@ -141,7 +143,7 @@ proxy-groups:
   - {name: YouTube,   <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png"} # YouTube专用组
   - {name: Streaming, <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Streaming!CN.png"} # 流媒体服务专用组(如Netflix, Disney+, TikTok 等)
   - {name: Chat,      <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png"} # 即时通讯 (如 Telegram, WhatsApp, Line 等)
-  - {name: Social,    <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Instagram.png"} # 社交媒体 (如 Twitter, Facebook, Instagram 等)
+  - {name: Social,    <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Instagram.png"} # 社交媒体 (如 X, Instagram, Facebook 等)
   - {name: Test,      <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Speedtest.png"} # 用于测速工具等
   - {name: Emby,      <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Emby.png"} # Emby服务直连专用组
   - {name: Game,      <<: *dp, icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png"} # 游戏服务专用组
@@ -217,10 +219,10 @@ rules:
 
   # 特定业务代理分流规则
   - RULE-SET,anti-AD,REJECT # 广告规则
-  - GEOSITE,category-ai-!cn,AI # 非中国区 AI 服务（如 ChatGPT、Gemini）
+  - GEOSITE,category-ai-!cn,AI # 非中国区 AI 服务（如 ChatGPT、Gemini 等）
   - GEOSITE,github,AI
   - GEOSITE,category-communication,Chat # 即时通讯服务域名（Telegram、WhatsApp 等）
-  - GEOSITE,category-social-media-!cn,Social # 非中国区社交媒体（如 Twitter、Facebook 等）
+  - GEOSITE,category-social-media-!cn,Social # 非中国区社交媒体（如 X、Instagram、Facebook 等）
   - GEOSITE,steam,Game
   - GEOSITE,category-games,Game # 其他游戏平台（如 Epic、Origin、Uplay 等）
   - GEOSITE,youtube,YouTube
