@@ -1,6 +1,6 @@
 # Mihomo 私人yaml稳定ip分流配置方案
 
-本仓库两个版本的配置文件：`fallback-all.yaml`（全自动故障转移版）与 `fallback-smart.yaml`（故转智选版）。
+两个配置文件：`fallback-all.yaml`与 `fallback-smart.yaml`
 
 设计核心在于**解决节点频繁自动切换（跳 IP）导致被各类应用（尤其是 AI 平台、流媒体、社交软件）判定为异地登录或账号异常而触发风控的问题**。
 
