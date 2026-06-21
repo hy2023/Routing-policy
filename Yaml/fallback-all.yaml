@@ -1,6 +1,5 @@
 # ===============================
 # Mihome-fallback-all方案 - 最终版
-# 代理提供商填入订阅信息,DNS按需修改便可直接使用
 # ===============================
 
 # ========================
@@ -30,35 +29,27 @@ proxies:
 # ========================
 log-level: warning
 mode: rule
-find-process-mode: off
 ipv6: true # 全局启用IPv6支持（可选值: true,false），建议在网络环境支持时将其设置为 true，否则可能引发未知问题。
 unified-delay: true
 tcp-concurrent: true
 disable-keep-alive: false
 keep-alive-idle: 600
 keep-alive-interval: 15
-
 allow-lan: true
 port: 7890
-socks-port: 7891
 mixed-port: 7893
-redir-port: 7892
-tproxy-port: 7895
 
 # ========================
 # TUN 模块配置 - 透明代理功能
 # ========================
 tun:
   enable: true
-  device: utun
   stack: mixed
-  strict-route: false
   endpoint-independent-nat: true
   dns-hijack: [any:53, tcp://any:53] 
-# ———  以下三项在插件默认控制模式设为 false，如在仅核心模式必需设为 true  ———
-  auto-route: false             # 路由接管：自动修改系统路由表引流。
-  auto-redirect: false          # 流量劫持：拦截并重定向网络数据包。
-  auto-detect-interface: false  # 出口识别：自动绑定上网网卡，防环路。
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
 
 # ========================================================
 # 实验性功能：使用 Hy2/TUIC 节点出现断流、测速波动大，可开启此项
@@ -67,7 +58,6 @@ tun:
 
 # ========================
 # DNS 配置 - 域名解析设置
-# 建议优先使用运营商下放DNS替换下方nameserver加密DNS,并删除default-nameserver部分
 # ========================
 dns:
   enable: true
@@ -77,7 +67,8 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fdfe:dcba:9876::1/64
-  fake-ip-filter: # Fake IP黑名单，这些域名不使用Fake IP
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter: # Fake IP黑名单，需解析成真实IP的域名列表
     - +.lan
     - +.local
     - geosite:cn
@@ -87,9 +78,6 @@ dns:
     - "time.*.com"
     - localhost.ptlogin2.qq.com
 
-  fake-ip-filter-mode: blacklist
-  use-system-hosts: true
-  use-hosts: true
   default-nameserver: # 如nameserver部分填的运营商DNS需删除default-nameserver部分
     - 119.29.29.29
     - 223.5.5.5
@@ -113,13 +101,11 @@ profile: { store-selected: true, store-fake-ip: true }
 # ========================
 geodata-mode: true # Geo数据文件模式：false 为 GeoIP (mmdb格式)，true 为 GeoSite (dat格式)。
 geodata-loader: standard # GEO数据加载方式：standard (标准模式，速度快) 或 memconservative (内存节省模式)。
-
 geox-url: #  GEO 数据下载地址
   geoip: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
   geosite: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
   mmdb: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
   asn: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb"
-
 geo-auto-update: true
 geo-update-interval: 24 # GEO 数据更新间隔，单位为小时
 
@@ -199,8 +185,8 @@ rule-anchor:
 
 rule-providers:
   # 自定义或非直接 GEOSITE/GEOIP 类型数据
-  Custom-Direct: {<<: *class, url: "https://fastly.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Custom_Direct.list"}
-  Steam-CDN: {<<: *class, url: "https://fastly.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Steam_CDN.list"}
+#  Custom-Direct: {<<: *class, url: "https://fastly.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Custom_Direct.list"}
+#  Steam-CDN: {<<: *class, url: "https://fastly.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Steam_CDN.list"}
   test: {<<: *class, url: "https://fastly.jsdelivr.net/gh/liandu2024/clash@main/list/Check.list"}
   anti-AD: {<<: *mrs, url: "https://fastly.jsdelivr.net/gh/privacy-protection-tools/anti-ad.github.io@master/docs/mihomo.mrs"}
 
@@ -211,9 +197,9 @@ rule-providers:
 rules:
   # 本地及私有网络直连规则
   - GEOSITE,private,CN # 私有地址IP规则
-  - RULE-SET,Custom-Direct,CN # 自定义直连(Custom_OpenClash项目维护的域名)
+#  - RULE-SET,Custom-Direct,CN # 自定义直连(Custom_OpenClash项目维护的域名)
+#  - RULE-SET,Steam-CDN,CN # Steam内容分发(Custom_OpenClash项目维护的域名)
   - GEOSITE,category-game-platforms-download,CN # 游戏平台下载（如 Epic 启动器、战网等）
-  - RULE-SET,Steam-CDN,CN # Steam内容分发(Custom_OpenClash项目维护的域名)
   - GEOSITE,category-public-tracker,CN # 公共 BT Tracker（直连避免代理干扰）
   - GEOSITE,category-games@cn,CN # 中国区游戏平台
 
