@@ -79,8 +79,8 @@ dns:
     - localhost.ptlogin2.qq.com
 
   default-nameserver: # 如nameserver部分填的运营商DNS可删除default-nameserver部分
-    - 119.29.29.29
-    - 223.5.5.5
+    - tls://1.12.12.12
+    - tls://223.5.5.5
   nameserver: # 建议优先使用运营商DNS替换下方加密DNS
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
