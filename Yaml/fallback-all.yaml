@@ -185,8 +185,8 @@ rule-anchor:
 
 rule-providers:
   # 自定义或非直接 GEOSITE/GEOIP 类型数据
-#  Custom-Direct: {<<: *class, url: "https://fastly.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Custom_Direct.list"}
-#  Steam-CDN: {<<: *class, url: "https://fastly.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Steam_CDN.list"}
+  Custom-Direct: {<<: *class, url: "https://fastly.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Custom_Direct.list"}
+  Steam-CDN: {<<: *class, url: "https://fastly.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Steam_CDN.list"}
   test: {<<: *class, url: "https://fastly.jsdelivr.net/gh/liandu2024/clash@main/list/Check.list"}
   anti-AD: {<<: *mrs, url: "https://fastly.jsdelivr.net/gh/privacy-protection-tools/anti-ad.github.io@master/docs/mihomo.mrs"}
 
@@ -197,8 +197,8 @@ rule-providers:
 rules:
   # 本地及私有网络直连规则
   - GEOSITE,private,CN # 私有地址IP规则
-#  - RULE-SET,Custom-Direct,CN # 自定义直连(Custom_OpenClash项目维护的域名)
-#  - RULE-SET,Steam-CDN,CN # Steam内容分发(Custom_OpenClash项目维护的域名)
+  - RULE-SET,Custom-Direct,CN # 自定义直连(Custom_OpenClash项目维护的域名)
+  - RULE-SET,Steam-CDN,CN # Steam内容分发(Custom_OpenClash项目维护的域名)
   - GEOSITE,category-game-platforms-download,CN # 游戏平台下载（如 Epic 启动器、战网等）
   - GEOSITE,category-public-tracker,CN # 公共 BT Tracker（直连避免代理干扰）
   - GEOSITE,category-games@cn,CN # 中国区游戏平台
